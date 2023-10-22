@@ -1,4 +1,4 @@
-module managry-go
+module github.com/MaximPolyaev/managry
 
 go 1.21
 

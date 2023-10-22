@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
+	"github.com/MaximPolyaev/managry/internal/adapters/authserver"
+	"github.com/MaximPolyaev/managry/internal/handlers/signinhandler"
+	"github.com/MaximPolyaev/managry/internal/handlers/signuphandler"
+	"github.com/MaximPolyaev/managry/internal/utils/logger"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"managry-go/internal/adapters/authserver"
-	"managry-go/internal/handlers/signinhandler"
-	"managry-go/internal/handlers/signuphandler"
-	"managry-go/internal/utils/logger"
 )
 
 func main() {
