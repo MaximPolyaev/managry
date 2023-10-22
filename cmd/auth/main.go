@@ -4,8 +4,7 @@ import (
 	"os"
 
 	"github.com/MaximPolyaev/managry/internal/adapters/authserver"
-	"github.com/MaximPolyaev/managry/internal/handlers/signinhandler"
-	"github.com/MaximPolyaev/managry/internal/handlers/signuphandler"
+	"github.com/MaximPolyaev/managry/internal/handlers/authhandler"
 	"github.com/MaximPolyaev/managry/internal/utils/logger"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -25,11 +24,10 @@ func run(log *logger.Logger) error {
 	r.Use(middleware.Logger)
 
 	r.Route("/auth", func(r chi.Router) {
-		signIn := signinhandler.New()
-		signUp := signuphandler.New()
+		authHandler := authhandler.New()
 
-		r.Post("/signin", signIn.Handler)
-		r.Post("/signup", signUp.Handler)
+		r.Post("/signin", authHandler.SignInHandleFunc)
+		r.Post("/signup", authHandler.SignUpHandleFunc)
 	})
 
 	serv := authserver.New(log, r)
