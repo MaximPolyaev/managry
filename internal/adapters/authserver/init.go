@@ -1,6 +1,8 @@
 package authserver
 
-import "net/http"
+import (
+	"net/http"
+)
 
 const defaultAddress = "localhost:8080"
 
@@ -13,10 +15,11 @@ type logger interface {
 	Info(args ...any)
 }
 
-func New(log logger) *AuthServer {
+func New(log logger, h http.Handler) *AuthServer {
 	return &AuthServer{
 		Server: http.Server{
-			Addr: defaultAddress,
+			Addr:    defaultAddress,
+			Handler: h,
 		},
 		log: log,
 	}
